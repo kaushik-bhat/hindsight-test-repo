@@ -1,0 +1,15 @@
+name: Always Fail Workflow
+
+on: [push] # This workflow runs on every push
+
+jobs:
+  fail-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: This step will fail
+        run: |
+          echo "This workflow is designed to fail."
+          exit 1
