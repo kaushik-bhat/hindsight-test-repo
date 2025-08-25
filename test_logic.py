@@ -1,5 +1,6 @@
 # hindsight-test-repo/test_logic.py
 import unittest
+#hi
 
 class TestSimpleMath(unittest.TestCase):
     def test_addition_should_pass(self):
