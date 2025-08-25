@@ -1,15 +1,19 @@
-name: Always Fail Workflow
+# hindsight-test-repo/.github/workflows/fail.yml
+name: Run Python Tests
 
-on: [push] # This workflow runs on every push
+on: [push]
 
 jobs:
-  fail-job:
+  test-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: This step will fail
-        run: |
-          echo "This workflow is designed to fail."
-          exit 1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Python unit tests
+        run: python -m unittest test_logic.py
