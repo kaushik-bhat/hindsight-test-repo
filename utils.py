@@ -10,3 +10,4 @@ def calculate_average(numbers):
         raise TypeError("Input must be a list of numbers.")
         
     return sum(numbers) / len(numbers)
+#hi
