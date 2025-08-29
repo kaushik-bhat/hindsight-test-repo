@@ -1,29 +1,21 @@
 # hindsight-test-repo/.github/workflows/fail.yml
-name: Test and Lint Workflow
+name: Realistic Test Failure Workflow
 
 on: [push]
 
 jobs:
-  # This job will now PASS because we are not changing the test file
-  test-job:
+  test-application:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Run Python unit tests
-        run: python -m unittest test_logic.py
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  # This new job will FAIL because of the bad_code.py file
-  lint-job:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install linter
-        run: pip install flake8
-      - name: Run linter
-        run: flake8 .
+
+      - name: Run all unit tests
+        # The 'discover' command automatically finds all files starting
+        # with 'test_' and runs the tests inside them.
+        run: python -m unittest discover
