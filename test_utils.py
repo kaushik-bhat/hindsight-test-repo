@@ -13,3 +13,4 @@ class TestUtils(unittest.TestCase):
         This test will trigger a ZeroDivisionError and cause the build to fail.
         """
         calculate_average([])
+#hello am under the water
